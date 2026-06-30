@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,8 +15,18 @@ public class ArticleStorageService
 {
     public Article readArticle(int id)
     {
+        File file = new File("data/articles/" + id + ".json");
 
-        return null;
+        ObjectMapper mapper = new ObjectMapper();
+
+        try
+        {
+            return mapper.readValue(file, Article.class);
+        }catch (IOException e)
+        {
+            System.out.println("readArticle was unable to read from file: " + e.getMessage());
+            return null;
+        }
     }
 
     public void writeArticle(Article article)
@@ -36,12 +47,42 @@ public class ArticleStorageService
 
     public void deleteArticle(int id)
     {
+        File file = new File("data/articles/" + id + ".json");
 
+        if (file.delete())
+        {
+            System.out.println("Article deleted.");
+        }
+        else
+        {
+            System.out.println("Article not found or could not be deleted.");
+        }
     }
 
     public List<Article> readAllArticles()
     {
-        // this will loop the readArticle until it has all the articles in a list
-        return null;
+        List<Article> articleList = new ArrayList<>();
+
+        File directory = new File("data/articles");
+
+        File[] files = directory.listFiles();
+        ObjectMapper mapper = new ObjectMapper();
+
+        if(files == null)
+        {
+            return articleList;
+        }
+
+        for(File file: files)
+        {
+            try
+            {
+                articleList.add(mapper.readValue(file, Article.class));
+            }catch (IOException e)
+            {
+                System.out.println("readAllArticles failed to read articles: " + e.getMessage());
+            }
+        }
+        return articleList;
     }
 }
