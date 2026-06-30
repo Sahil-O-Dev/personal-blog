@@ -7,11 +7,14 @@ public class Article
     private String publishingDate;
     private String content;
 
-    public Article(int id, String title, String publishingDate, String content) {
-        this.id = id;
+    public Article()
+    {
+
+    }
+
+    public Article(String title, String content) {
         this.title = title;
         this.content = content;
-        this.publishingDate = publishingDate;
     }
 
     public int getId() {

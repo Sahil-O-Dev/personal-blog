@@ -1,9 +1,11 @@
 package com.sahil.personalblog.services;
 
 import com.sahil.personalblog.models.Article;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ArticleService
 {
     public void createArticle(String title, String content)
