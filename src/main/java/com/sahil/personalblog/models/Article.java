@@ -1,0 +1,48 @@
+package com.sahil.personalblog.models;
+
+public class Article
+{
+    private int id;
+    private String title;
+    private String publishingDate;
+    private String content;
+
+    public Article(int id, String title, String publishingDate, String content) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.publishingDate = publishingDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPublishingDate() {
+        return publishingDate;
+    }
+
+    public void setPublishingDate(String publishingDate) {
+        this.publishingDate = publishingDate;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+}
