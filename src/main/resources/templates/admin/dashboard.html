@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+
+<div class="page">
+
+    <div class="header">
+        <div>
+            <h1>Admin Dashboard</h1>
+            <p class="subtitle">Manage your personal blog articles.</p>
+        </div>
+
+        <a class="btn" href="/admin/new">+ Add Article</a>
+    </div>
+
+    <div th:if="${#lists.isEmpty(articles)}" class="card empty">
+        <p>No articles yet. Create your first one.</p>
+    </div>
+
+    <div class="card" th:each="article : ${articles}">
+        <h2 th:text="${article.title}">Article Title</h2>
+
+        <p class="date">
+            Published:
+            <span th:text="${article.publishingDate}">Date</span>
+        </p>
+
+        <div class="actions">
+            <a class="btn btn-secondary"
+               th:href="@{/admin/edit/{id}(id=${article.id})}">
+                Edit
+            </a>
+
+            <form th:action="@{/admin/delete/{id}(id=${article.id})}" method="post">
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

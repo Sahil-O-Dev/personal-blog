@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Article</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="page">
+
+    <div class="header">
+        <div>
+            <h1>Edit Article</h1>
+            <p class="subtitle">Update your existing blog post.</p>
+        </div>
+
+        <a class="btn btn-secondary" href="/admin">Back</a>
+    </div>
+
+    <div class="form-card">
+        <form th:action="@{/admin/edit/{id}(id=${article.id})}" method="post">
+
+            <label>Title</label>
+            <input type="text" name="title" th:value="${article.title}" required>
+
+            <label>Content</label>
+            <textarea name="content" rows="12" th:text="${article.content}" required></textarea>
+
+            <button class="btn" type="submit">Update Article</button>
+
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

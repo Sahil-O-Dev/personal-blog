@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Article</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+
+<div class="page">
+
+    <div class="header">
+        <div>
+            <h1>Add Article</h1>
+            <p class="subtitle">Create a new blog post.</p>
+        </div>
+
+        <a class="btn btn-secondary" href="/admin">Back</a>
+    </div>
+
+    <div class="form-card">
+        <form action="/admin/new" method="post">
+
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Enter article title" required>
+
+            <label>Content</label>
+            <textarea name="content" rows="12" placeholder="Write your article here..." required></textarea>
+
+            <button class="btn" type="submit">Create Article</button>
+
+        </form>
+    </div>
+
+</div>
 
 </body>
 </html>

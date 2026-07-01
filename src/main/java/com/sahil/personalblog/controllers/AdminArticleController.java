@@ -27,7 +27,7 @@ public class AdminArticleController
     {
         List<Article> articleList = articleService.getAllArticles();
         model.addAttribute("articles", articleList);
-        return "admin/admin";
+        return "admin/dashboard";
     }
 
     @GetMapping("/admin/edit/{id}")
@@ -36,7 +36,7 @@ public class AdminArticleController
         Article article = articleService.getArticle(id);
         model.addAttribute("article", article);
 
-        return "admin/update";
+        return "admin/edit-article";
     }
 
     @PostMapping("/admin/edit/{id}")
@@ -49,14 +49,14 @@ public class AdminArticleController
     @GetMapping("/admin/new")
     public String newPage()
     {
-        return"admin/new";
+        return "admin/add-article";
     }
 
     @PostMapping("/admin/new")
     public String newPage(@RequestParam String title,  @RequestParam String content)
     {
         articleService.createArticle(title, content);
-        return"redirect:/admin";
+        return "redirect:/admin";
     }
 
     @PostMapping("/admin/delete/{id}")

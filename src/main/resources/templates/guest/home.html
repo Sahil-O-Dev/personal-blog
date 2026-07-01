@@ -2,13 +2,45 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>HomePage</title>
+    <title>Personal Blog</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <div class="container">
-        <h1>Personal Blog</h1>
 
+<div class="page">
 
+    <div class="header">
+        <div>
+            <h1>Personal Blog</h1>
+            <p class="subtitle">Thoughts, projects, and programming notes.</p>
+        </div>
     </div>
+
+    <div th:if="${#lists.isEmpty(articles)}" class="card empty">
+        <p>No articles have been published yet.</p>
+    </div>
+
+    <div class="card" th:each="article : ${articles}">
+        <h2>
+            <a class="blog-title"
+               th:href="@{/article/{id}(id=${article.id})}"
+               th:text="${article.title}">
+                Article Title
+            </a>
+        </h2>
+
+        <p class="date">
+            Published:
+            <span th:text="${article.publishingDate}">Date</span>
+        </p>
+
+        <a class="btn btn-secondary"
+           th:href="@{/article/{id}(id=${article.id})}">
+            Read Article
+        </a>
+    </div>
+
+</div>
+
 </body>
 </html>
